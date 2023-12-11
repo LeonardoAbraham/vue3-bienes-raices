@@ -33,6 +33,13 @@
             Inicia Sesión con tu cuenta
         </v-card-subtitle>
 
+        <v-alert
+            class="my-5"
+            type="error"
+            title="Alert title"
+        >
+        </v-alert>
+
         <v-form class="mt-5">
             <v-text-field
                 type="email"
