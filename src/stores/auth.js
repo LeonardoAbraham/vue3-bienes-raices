@@ -1,17 +1,26 @@
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { defineStore } from 'pinia'
 import { useFirebaseAuth } from 'vuefire'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', ()=> {
     const auth = useFirebaseAuth()
-    const authUser = ref({})
+    const authUser = ref(null)
+
     const errorMsg = ref('')
     const errorCodes = {
         'auth/user-not-found' : 'Usuario no encontrado',
         'auth/wrong-password' : 'El password es incorrecto',
         'auth/invalid-credential' : 'Credenciales invalidas'
     }
+
+    onMounted(()=> {
+        onAuthStateChanged(auth, (user)=> {
+            if(user){
+                authUser.value = user
+            }
+        })
+    })
 
     const login = ({email, password}) => {
         signInWithEmailAndPassword(auth, email, password)
