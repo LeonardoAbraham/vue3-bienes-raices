@@ -34,9 +34,10 @@
         </v-card-subtitle>
 
         <v-alert
+            v-if="auth.hasError"
             class="my-5"
             type="error"
-            title="Alert title"
+            :title="auth.errorMsg"
         >
         </v-alert>
 
