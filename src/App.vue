@@ -27,7 +27,7 @@ const auth = useAuthStore()
                         <v-btn :to="{name: 'admin-propiedades'}">
                             Admin
                         </v-btn>
-                        <v-btn>
+                        <v-btn @click="auth.logout">
                             Cerrar Sesión
                         </v-btn>
                     </div>
