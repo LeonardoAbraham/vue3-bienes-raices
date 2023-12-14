@@ -7,7 +7,7 @@
     import useImage from '@/composables/useImage'
 
     const items = [1,2,3,4,5]
-    const { uploadImage } = useImage()
+    const { url, uploadImage, image } = useImage()
     const router = useRouter()
     const db = useFirestore()
 
@@ -32,7 +32,8 @@
         const { imagen, ...propiedad } = values
 
         const docRef = await addDoc(collection(db, "propiedades"), {
-            ...propiedad
+            ...propiedad,
+            imagen: url.value
         });
         if(docRef.id) {
             router.push({name: 'admin-propiedades'})
@@ -72,6 +73,10 @@
                 @change="uploadImage"
             >
             </v-file-input>
+            <div v-if="image" class="my-5">
+                <p class="font-weight-bold">Imagen Propiedad:</p>
+                <img :src="image" alt="" class="w-50">
+            </div>
             <v-text-field
                 class="mb-5"
                 label="Precio"
