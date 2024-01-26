@@ -9,8 +9,8 @@ Con este proyecto se pretende estudiar el funcionamiento del framework Vue.js 3,
 
 ## Como ejecutar el proyecto
 
-[!IMPORTANT]
-Se uso node version 20.11, npm version 10.2.4
+> [!IMPORTANT]
+> Se uso node version 20.11, npm version 10.2.4
 
 ```
 npm install
